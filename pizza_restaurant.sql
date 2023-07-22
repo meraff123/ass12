@@ -88,3 +88,13 @@ JOIN orders o ON c.customer_id = o.order_customer_id
 JOIN order_pizza op ON o.order_id = op.order_id
 JOIN pizzas p ON op.pizza_id = p.pizza_id
 GROUP BY c.customer_id;
+
+-- Query to number 5
+SELECT c.Name AS CustomerName, DATE(o.OrderDateTime) AS OrderDate, SUM(p.Price * oi.Quantity) AS TotalAmountSpent
+FROM Customers c
+JOIN Orders o ON c.CustomerID = o.CustomerID
+JOIN OrderItems oi ON o.OrderID = oi.OrderID
+JOIN Pizzas p ON oi.PizzaID = p.PizzaID
+GROUP BY c.CustomerID, c.Name, DATE(o.OrderDateTime);
+
+
